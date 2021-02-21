@@ -1,4 +1,6 @@
 import React from 'react';
+import PokedexFlavourData from './PokedexFlavourData'
+import PokemonGameBaseStats from './PokemonGameBaseStats'
 import { Link } from 'react-router-dom';
 
 class Pokemon extends React.Component {
@@ -7,8 +9,8 @@ class Pokemon extends React.Component {
         super(props);
         this.state = {
             pokemonGameData: {},
-            pokemonSpeciesInfo: "",
-            pokemonFlavourText: ""
+            pokemonSpeciesInfoURL: "",
+            pokemonSpeciesInfo: {}
         }
     }
 
@@ -18,16 +20,15 @@ class Pokemon extends React.Component {
             .then(response => {
                 this.setState({
                     pokemonGameData: response,
-                    pokemonSpeciesInfo: response.species.url
+                    pokemonSpeciesInfoURL: response.species.url
                 });
-                fetch(`${this.state.pokemonSpeciesInfo}`)
+                fetch(`${this.state.pokemonSpeciesInfoURL}`)
                     .then(response => response.json())
                     .then(response => {
                         this.setState({
-                            pokemonFlavourText: response.flavor_text_entries[10].flavor_text,
+                            pokemonSpeciesInfo: response
                         });
                     })
-
             })
             .catch(err => {
                 console.log(err);
@@ -35,12 +36,17 @@ class Pokemon extends React.Component {
     }
 
     render() {
-        return (
-            <div>
-                <p>{this.state.pokemonFlavourText}</p>
-                <Link to="/">Back</Link>
-            </div>
-        )
+        if (this.state.pokemonSpeciesInfo.name) { //this is shit but what to check?
+            return (
+                <div className="pokemonInfoWrapper">
+                    <Link to="/">Back</Link>
+                    <PokedexFlavourData {...this.state} />
+                    <PokemonGameBaseStats {...this.state} />
+                </div>
+            )
+        }
+        return (<div>test</div>)
+
     }
 }
 
