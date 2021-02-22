@@ -1,5 +1,6 @@
 import React from "react";
 import './App.css';
+import './bootstrap-5.0.0-beta2-dist/css/bootstrap.min.css'
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import Pokemon from "./components/Pokemon"
 import Pokedex from "./components/Pokedex";

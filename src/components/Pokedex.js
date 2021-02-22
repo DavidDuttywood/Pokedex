@@ -1,4 +1,5 @@
 import React from 'react';
+import { getPokemonIndexFromUrl } from '../helpers.js'
 import PokedexEntry from "./PokedexEntry";
 
 class Pokedex extends React.Component {
@@ -11,12 +12,6 @@ class Pokedex extends React.Component {
       selectedPokemon: ""
     };
     this.filterPokedex = this.filterPokedex.bind(this);
-  }
-
-  getPokemonIndexFromUrl(url) {
-    url = url.replace("https://pokeapi.co/api/v2/pokemon/", "");
-    url = url.replace("/", "");
-    return url;
   }
 
   componentDidMount() {
@@ -62,7 +57,7 @@ class Pokedex extends React.Component {
           return (
             <PokedexEntry
               key={index}
-              number={this.getPokemonIndexFromUrl(p.url)}
+              number={getPokemonIndexFromUrl(p.url)}
               name={p.name}
             />
           );

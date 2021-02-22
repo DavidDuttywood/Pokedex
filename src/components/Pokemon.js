@@ -9,7 +9,7 @@ class Pokemon extends React.Component {
         super(props);
         this.state = {
             pokemonGameData: {},
-            pokemonSpeciesInfoURL: "",
+            pokemonSpeciesInfoURL: "", //needs depricating
             pokemonSpeciesInfo: {}
         }
     }
@@ -46,7 +46,6 @@ class Pokemon extends React.Component {
             )
         }
         return (<div>test</div>)
-
     }
 }
 
