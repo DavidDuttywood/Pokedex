@@ -29,6 +29,8 @@ class Pokemon extends React.Component {
                             pokemonSpeciesInfo: response
                         });
                     })
+                    console.log(this.state.pokemonGameData)
+
             })
             .catch(err => {
                 console.log(err);
@@ -36,7 +38,7 @@ class Pokemon extends React.Component {
     }
 
     render() {
-        if (this.state.pokemonSpeciesInfo.name) { //this is shit but what to check?
+        if (this.state.pokemonSpeciesInfo.name) { 
             return (
                 <div className="pokemonInfoWrapper">
                     <Link to="/">Back</Link>
@@ -45,7 +47,7 @@ class Pokemon extends React.Component {
                 </div>
             )
         }
-        return (<div>test</div>)
+        return (<div>loading</div>)
     }
 }
 

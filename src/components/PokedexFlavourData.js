@@ -27,20 +27,30 @@ class PokedexFlavourData extends React.Component {
                     <div>Name: {this.props.pokemonSpeciesInfo.name}</div>
                     <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/${this.props.pokemonSpeciesInfo.id}.png`} />
                     <div>Flavour: {this.props.pokemonSpeciesInfo.flavor_text_entries[0].flavor_text}</div>
-                    <div>Evolution chain</div>
-                    {this.state.evolutionData.map((pokemon, index) => {
-                        console.log(pokemon)
-                        return (
-                            <div key={index}>
-                                <div>{pokemon.name}</div>
-                                <div>{pokemon.level}</div>
-                                <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/${getPokemonIndexFromUrl(pokemon.speciesURL)}.png`} />
-                            </div>
-                        )
-                    })}
+                    <div className="row">
+                        {this.state.evolutionData.map((pokemon, index) => {
+                            return (
+                                <div key={index} className="col-sm">
+                                    <div className="card">
+                                        <div className="card-body">
+                                            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/${getPokemonIndexFromUrl(pokemon.speciesURL)}.png`} />
+                                            <h5 className="card-title">{pokemon.name}</h5>
+                                            <p className="card-text">{pokemon.level}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                    </div>
                 </div>)
         }
-        return (<p>test</p>)
+        return (
+            <div>
+                <div>Name: {this.props.pokemonSpeciesInfo.name}</div>
+                <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/${this.props.pokemonSpeciesInfo.id}.png`} />
+                <div>Flavour: {this.props.pokemonSpeciesInfo.flavor_text_entries[0].flavor_text}</div>
+            </div>
+        )
     }
 }
 

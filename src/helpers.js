@@ -7,13 +7,10 @@ export function getPokemonIndexFromUrl(url) {
 
 export function getEvolutionChain(evolutionChain) {
     var evolutionChainData = [];
-    console.log(evolutionChain)
     if (evolutionChain.id == 67) { 
         //eevee
     }
-    else if (evolutionChain.chain.evolves_to.length == 1) {
-        //works for 3 stage evos but not too - e.g ratata
-        // also, is this too verbose?
+    else if (typeof evolutionChain.chain.evolves_to[0] !== 'undefined') {
         evolutionChainData.push({
             name: evolutionChain.chain.species.name,
             level: "",
@@ -24,7 +21,7 @@ export function getEvolutionChain(evolutionChain) {
             level: evolutionChain.chain.evolves_to[0].evolution_details[0].min_level,
             speciesURL: evolutionChain.chain.evolves_to[0].species.url
         })
-        if (evolutionChain.chain.evolves_to[0].evolution_details.length == 1){
+        if (typeof evolutionChain.chain.evolves_to[0].evolves_to[0] !== 'undefined'){
             evolutionChainData.push({
                 name: evolutionChain.chain.evolves_to[0].evolves_to[0].species.name,
                 level: evolutionChain.chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level,
